@@ -63,17 +63,25 @@ function runNewGame() {
   updateCanvas();
 }
 
-function pauseGame() {
-  togglePaused();
-  document.getElementById('pauseMenu').style.display = 'block';
+function showOptions() {
+  document.getElementById('optionsWindow').style.display = 'block';
 }
 
-function togglePaused() {
+function showHelp() {
+  document.getElementById('helpWindow').style.display = 'block';
+}
+
+function pauseGame() {
+  toggleGameState();
+  document.getElementById('pauseMenu').style.display = 'flex';
+}
+
+function toggleGameState() {
   game.paused = !game.paused;
 }
 
 function resumeGame() {
-  togglePaused();
+  toggleGameState();
   updateCanvas();
   document.getElementById('pauseMenu').style.display = 'none';
 }
