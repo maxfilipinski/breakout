@@ -6,7 +6,25 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <canvas id="canvas" width="480" height="320"></canvas>
-        <script src="app.js" type="module"></script>
+        <div id="mainMenu" class="menu centered">
+            <div id="menuHeader" class="menuHeader">BREAKOUT</div>
+            <div class="menuItems">
+                <button id="newGameBtn" onclick="runNewGame()">New Game</button>
+                <button id="optionsBtn" onclick="showOptions()">Options</button>
+                <button id="helpBtn" onclick="showHelp()">Help</button>
+            </div>
+        </div>
+        <div id="pauseMenu" class="menu centered">
+            <div class="menuItems">
+                <button id="continueBtn" onclick="resumeGame()">Continue</button>
+                <button id="backToMainMenuBtn" onclick="showMainMenu()">Back to main menu</button>
+            </div>
+        </div>
+        <div id="optionsWindow"></div>
+        <div id="helpWindow"></div>
+        <div id="gameWindow">
+            <canvas id="canvas" width="480" height="320" />
+        </div>
+        <script src="app.js"></script>
     </body>
 </html>

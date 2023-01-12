@@ -7,6 +7,7 @@ let leftKeyPressed = false;
 const game = {
   score: 0,
   lives: 3,
+  paused: false,
 };
 
 const ball = {
@@ -54,13 +55,50 @@ const paddle = {
   y: canvas.height - 20,
 };
 
+function runNewGame() {
+  document.getElementById('mainMenu').style.display = 'none';
+  document.getElementById('gameWindow').style.display = 'block';
+
+  bricks.init();
+  updateCanvas();
+}
+
+function showOptions() {
+  document.getElementById('optionsWindow').style.display = 'block';
+}
+
+function showHelp() {
+  document.getElementById('helpWindow').style.display = 'block';
+}
+
+function pauseGame() {
+  toggleGameState();
+  document.getElementById('pauseMenu').style.display = 'flex';
+}
+
+function toggleGameState() {
+  game.paused = !game.paused;
+}
+
+function resumeGame() {
+  toggleGameState();
+  updateCanvas();
+  document.getElementById('pauseMenu').style.display = 'none';
+}
+
+function showMainMenu() {
+  document.location.reload();
+}
+
 function updateCanvas() {
   draw();
 
   moveBall();
   movePaddle();
 
-  requestAnimationFrame(updateCanvas);
+  if (!game.paused) {
+    requestAnimationFrame(updateCanvas);
+  }
 }
 
 function draw() {
@@ -140,8 +178,7 @@ function moveBall() {
     game.lives--;
 
     if (!game.lives) {
-      alert('GAME OVER');
-      document.location.reload();
+      console.log('game over');
     } else {
       ball.x = canvas.width / 2;
       ball.y = canvas.height - 30;
@@ -166,8 +203,7 @@ function moveBall() {
 
           game.score++;
           if (game.score === bricks.columnCount * bricks.rowCount) {
-            alert('YOU WIN');
-            document.location.reload();
+            console.log('you win');
           }
         }
       }
@@ -196,6 +232,8 @@ function keyDownHandler(e) {
     rightKeyPressed = true;
   } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
     leftKeyPressed = true;
+  } else if (e.key === 'Escape') {
+    pauseGame();
   }
 }
 
@@ -229,9 +267,6 @@ function mouseMoveHandler(e) {
     }
   }
 }
-
-bricks.init();
-updateCanvas();
 
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);

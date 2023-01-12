@@ -1,3 +1,9 @@
+body {
+    background: #202028;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 canvas {
     position:absolute;
     top: 0;
@@ -6,4 +12,51 @@ canvas {
     right: 0;
     margin: auto;
     background: #000000;
+}
+
+#gameWindow {
+    display: none;
+}
+
+#pauseMenu {
+    display: none;
+    border: solid 1px;
+    text-align: center;
+    margin: auto;
+    z-index: 1;
+    background: #202028;
+    flex-direction: column;
+    max-width: 100px;
+    padding: 5px;
+}
+
+#newGame {
+    border: solid 2px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.centered {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.menu button {
+    margin: 5px;
+}
+
+.menuHeader {
+    font-size: 2em;
+}
+
+.menuItems {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
 }
